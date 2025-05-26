@@ -1,0 +1,31 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "ICPC Compile",
+            "command": "C:/mingw64/bin/g++.exe",
+            "args": [
+                "-Wall",
+                "-O2",
+                "-DLOCAL",
+                "-finput-charset=UTF-8",    // 强制源文件编码为UTF-8
+                "-fexec-charset=GBK",       // 关键！Windows终端默认是GBK，必须匹配
+                "${fileDirname}/*.cpp",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.exe",
+            ],
+            "options": {
+                "cwd": "C:/mingw64/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "C:/mingw64/bin/gcc.exe"
+        }
+    ]
+}
