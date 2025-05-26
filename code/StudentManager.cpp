@@ -136,9 +136,152 @@ void StudentManager::delete_student() {
                 }
                 fs<<endl;
         }
-        
+
         fs.close();
         cout << "已将学号为:" << id << "的学生的信息删除" << endl;
         system("pause");
         system("cls");
+}
+
+void StudentManager::modify_student() {
+        cout << "请输入修改对象的学号:" << endl;
+        string id;
+        int idx;
+        fstream fs;
+        fs.open("../text1.txt",ios::in);
+        StudentManager Student_show(fs);
+        fs.close();
+        bool is_find = false;
+        cin >> id;
+        for(int i = 0; i < (int)Student_show.students.size(); i ++) {
+                if(Student_show.students[i].get_id() == id) {
+                        idx = i;
+                        is_find = true;
+                        break;
+                }
+        }
+        if(!is_find) {
+                cout << "未查询到该学生" << endl;
+                system("pause");
+                system("cls");
+                return;
+        }
+        while(1) {
+                system("cls");
+                cout << "**********************菜单**********************" << endl;
+                cout << "1.修改学号 2.修改姓名 3.修改性别 4.修改成绩 0.退出" << endl;
+                int op;
+                cin >> op;
+                if(op == 0) {
+                        system("cls");
+                        return;
+                }
+                if(op == 1) {
+                        cout << "请输入新的学号:" << endl;
+                        string new_id;
+                        cin >> new_id;
+                        Student_show.students[idx].id = new_id;
+                        cout << "修改成功！" << endl;
+                }
+                else if(op == 2) {
+                        cout << "请输入新的姓名:" << endl;
+                        string new_name;
+                        cin >> new_name;
+                        Student_show.students[idx].name = new_name;
+                        cout << "修改成功！" << endl;
+                }
+                else if(op == 3) {
+                        cout << "请输入新的性别:" << endl;
+                        string new_gender;
+                        cin >> new_gender;
+                        Student_show.students[idx].gender = new_gender;
+                        cout << "修改成功！" << endl;
+                }
+                else if(op == 4) {
+                        cout << "请输入修改科目序号:" << endl;
+                        int cnt;
+                        cin >> cnt;
+                        if((int)(*Student_show.students[idx].grades).size() < cnt) {
+                                cout << "序号超过范围！" << endl;
+                        }
+                        else {
+                                cout << "请输入新的分数" << endl;
+                                double new_grade;
+                                cin >> new_grade;
+                                (*Student_show.students[idx].grades)[cnt - 1] = new_grade;
+                                cout << "修改成功!" << endl;
+                        }
+                }
+                fs.open("../text1.txt", ios::out);
+                for(int i = 0; i < (int)Student_show.students.size(); ++i){
+                        fs << Student_show.students[i].get_id()<<"\t";
+                        fs << Student_show.students[i].get_name()<<"\t";
+                        fs << Student_show.students[i].get_gender()<<"\t";
+                        int len_grades = Student_show.students[i].get_grades()->size();
+                        fs << len_grades << '\t';
+                        for(int j = 0;j < len_grades;++j){
+                                fs<<(*Student_show.students[i].get_grades())[j]<<" ";
+                        }
+                        fs<<endl;
+                }
+                fs.close();
+                system("pause");
+                system("cls");
+        }
+}
+
+void StudentManager::find_student() {
+        cout << "请输入查询对象的学号:" << endl;
+        string id;
+        int idx;
+        fstream fs;
+        fs.open("../text1.txt",ios::in);
+        StudentManager Student_show(fs);
+        fs.close();
+        bool is_find = false;
+        cin >> id;
+        for(int i = 0; i < (int)Student_show.students.size(); i ++) {
+                if(Student_show.students[i].get_id() == id) {
+                        idx = i;
+                        is_find = true;
+                        break;
+                }
+        }
+        if(!is_find) {
+                cout << "未查询到该学生" << endl;
+                system("pause");
+                system("cls");
+                return;
+        }
+        else {
+                cout << "学号\t姓名\t性别\t学科成绩"<<endl;
+                cout << Student_show.students[idx].get_id() << '\t'
+                        << Student_show.students[idx].get_name() << '\t'
+                        << Student_show.students[idx].get_gender() << '\t';
+                int len_grades = Student_show.students[idx].get_grades()->size();
+                for(int j = 0;j < len_grades;++j){
+                        cout<<(*Student_show.students[idx].get_grades())[j]<<" ";
+                }
+                cout << endl;
+                system("pause");
+                system("cls");
+        }
+}
+
+void StudentManager::clear_students() {
+        fstream fs;
+        fs.open("../text1.txt", ios::out);
+        fs << "";
+        fs.close();
+        cout << "以清空学生信息" << endl;
+        system("pause");
+        system("cls");
+}
+
+void StudentManager::sort_students() {
+        fstream fs;
+        fs.open("../text1.txt",ios::in);
+        StudentManager Student_show(fs);
+        fs.close();
+        
 }

@@ -23,6 +23,7 @@ public:
     string get_name();
     string get_gender();
     vector<double>* get_grades();
+    friend class StudentManager;
 };
 
 #endif

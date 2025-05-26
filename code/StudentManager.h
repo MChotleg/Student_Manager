@@ -22,6 +22,10 @@ public:
     void save();
     void show_students();
     void delete_student();
+    void modify_student();
+    void find_student();
+    void clear_students();
+    void sort_students();
 };
 
 #endif

@@ -23,12 +23,15 @@ int main(){
                 sm.delete_student();
                 break;
             case 4: //修改
+                sm.modify_student();
                 break;
             case 5: //查找
+                sm.find_student();
                 break;
             case 6: //排序
                 break;
             case 7: //清空
+                sm.clear_students();
                 break;
             default:
                 system("cls");
