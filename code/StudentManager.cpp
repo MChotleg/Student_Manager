@@ -283,5 +283,26 @@ void StudentManager::sort_students() {
         fs.open("../text1.txt",ios::in);
         StudentManager Student_show(fs);
         fs.close();
-        
+        for(int i = 0; i < (int)Student_show.students.size(); ++i){
+                Student_show.students[i].average = accumulate(Student_show.students[i].grades->begin(), Student_show.students[i].grades->end(), (double)(0)) / (double)Student_show.students.size();
+        }
+        sort(Student_show.students.begin(), Student_show.students.end(), [&](Student &a, Student &b) {
+                return a.average > b.average;
+        });
+        cout << "排序完成！" << endl;
+        fs.open("../text1.txt", ios::out);
+        for(int i = 0; i < (int)Student_show.students.size(); ++i){
+                fs << Student_show.students[i].get_id()<<"\t";
+                fs << Student_show.students[i].get_name()<<"\t";
+                fs << Student_show.students[i].get_gender()<<"\t";
+                int len_grades = Student_show.students[i].get_grades()->size();
+                fs << len_grades << '\t';
+                for(int j = 0;j < len_grades;++j){
+                        fs<<(*Student_show.students[i].get_grades())[j]<<" ";
+                }
+                fs<<endl;
+        }
+        fs.close();
+        system("pause");
+        system("cls");
 }

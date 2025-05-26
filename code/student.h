@@ -12,6 +12,7 @@ private:
     string name;
     string gender;
     vector<double>* grades;
+    double average = 0;
 public: 
     Student(string i = "",string n = "",string ge = "",vector<double>* gr = nullptr) noexcept;
     Student(const Student &rhs);

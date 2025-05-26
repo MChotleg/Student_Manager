@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include <numeric>
+#include <algorithm>
 #include "student.h"
 #include <fstream>
 #define filename "../text1.txt"

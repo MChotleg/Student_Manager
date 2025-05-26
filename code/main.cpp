@@ -29,6 +29,7 @@ int main(){
                 sm.find_student();
                 break;
             case 6: //排序
+                sm.sort_students();
                 break;
             case 7: //清空
                 sm.clear_students();
