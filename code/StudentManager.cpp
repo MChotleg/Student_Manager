@@ -112,3 +112,33 @@ void StudentManager::show_students(){
         system("pause");
         system("cls");
 }
+
+void StudentManager::delete_student() {
+        fstream fs;
+        fs.open("../text1.txt",ios::in);
+        StudentManager Student_show(fs);
+        cout << "请输入删除学生的学号:" << endl;
+        string id;
+        cin >> id;
+        for(int i = 0; i < (int)Student_show.students.size(); i ++) {
+                if(Student_show.students[i].get_id() == id) Student_show.students.erase(Student_show.students.begin() + i);
+        }
+        fs.close();
+        fs.open("../text1.txt", ios::out);
+        for(int i = 0; i < (int)Student_show.students.size(); ++i){
+                fs << Student_show.students[i].get_id()<<"\t";
+                fs << Student_show.students[i].get_name()<<"\t";
+                fs << Student_show.students[i].get_gender()<<"\t";
+                int len_grades = Student_show.students[i].get_grades()->size();
+                fs << len_grades << '\t';
+                for(int j = 0;j < len_grades;++j){
+                        fs<<(*Student_show.students[i].get_grades())[j]<<" ";
+                }
+                fs<<endl;
+        }
+        
+        fs.close();
+        cout << "已将学号为:" << id << "的学生的信息删除" << endl;
+        system("pause");
+        system("cls");
+}

@@ -21,6 +21,7 @@ public:
     void append_student();
     void save();
     void show_students();
+    void delete_student();
 };
 
 #endif

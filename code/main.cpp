@@ -20,8 +20,7 @@ int main(){
                 sm.show_students();
                 break;
             case 3: //删除
-
-            
+                sm.delete_student();
                 break;
             case 4: //修改
                 break;
