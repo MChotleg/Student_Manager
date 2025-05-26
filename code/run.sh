@@ -1,1 +1,0 @@
-g++ -std=c++17 -o StudentManager main.cpp student.cpp StudentManager.cpp && ./StudentManager
